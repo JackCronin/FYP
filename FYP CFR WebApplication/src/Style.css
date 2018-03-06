@@ -1,0 +1,221 @@
+.headTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    color: red;
+    margin:0%;
+    position:absolute;
+
+}
+.simplestyle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin-left:1em;
+
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    color: red;
+    margin:0%;
+}
+.NavTitle{
+     padding-top:.50em;
+}
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    margin-left: 1em;
+}
+.SearchBar{
+    margin-left:80%;
+    margin-top:0%;
+
+}
+.searchButton{
+     background-image: url(Images/search.png);
+     background-size: contain;
+     background-repeat:no-repeat;
+}
+.FrontPage{
+  	background-repeat:no-repeat;
+     background-size: 40%;
+     margin-left: 2%;
+     margin-top: 5%;
+}
+body{
+     background-color:#292828;
+     margin:0%;
+}
+.LoginForm{
+  background-color: #5c5858;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   padding-top: 2em;
+}
+.textInputEmail{
+    padding:3px;
+    margin-top:1em;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 35px;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:75%;
+    background-image: url(Images/email.png);
+    background-size: contain;
+    background-position: 5px;
+    background-repeat:no-repeat;
+
+}
+.textInputName{
+    padding:3px;
+    margin-top:1em;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-left: 35px;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width:75%;
+
+
+
+}
+.textInputPassword{
+    padding:3px;
+    margin-top:.5em;
+    width:75%;
+    margin-left: 10%;
+    margin-right:10%;
+    padding-left: 35px;
+    background-color: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-image: url(Images/password.png);
+    background-size: contain;
+     background-position: 5px;
+    background-repeat:no-repeat;
+}
+.LoginButton{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color:white;
+    margin-bottom: 5%;
+    margin-top: 8%;
+    margin-right: 25%;
+    margin-left:15%;
+    width:20%;
+    background-color:#ff4d4d;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom-color: #ff6666;
+    border-right-color: #ff6666;
+    border-left-color: #ff6666;
+    border-top-color: #ffcccc;
+}
+.RegisterBtn{
+  position:absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color:white;
+    margin-bottom: 8%;
+    margin-top: 3.5%;
+    margin-right: 25%;
+    margin-left:0%;
+    width:10%;
+    background-color:#ff4d4d;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom-color: #ff6666;
+    border-right-color: #ff6666;
+    border-left-color: #ff6666;
+    border-top-color: #ffcccc;
+}
+.Logintitle{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    color:white;
+    margin-left: 10%;
+    width:65%;
+
+}
+.LoginDivForm{
+    width:45%;
+    margin-top:5%;
+    margin-left:32.5%;
+    margin-right:32.5%;
+}
+.Forgotpass{
+    color: #ff4d4d;
+    width:50%;
+    margin-left: 10%;
+    padding-right:45%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+}
+.Register{
+     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #ff4d4d;
+}
+.User-Header{
+    display: block;
+    background: -moz-linear-gradient(top, rgba(149,149,149,1) 0%, rgba(13,13,13,1) 46%, rgba(1,1,1,1) 50%, rgba(10,10,10,1) 53%, rgba(78,78,78,1) 76%, rgba(56,56,56,1) 87%, rgba(27,27,27,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(149,149,149,1) 0%,rgba(13,13,13,1) 46%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 53%,rgba(78,78,78,1) 76%,rgba(56,56,56,1) 87%,rgba(27,27,27,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(149,149,149,1) 0%,rgba(13,13,13,1) 46%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 53%,rgba(78,78,78,1) 76%,rgba(56,56,56,1) 87%,rgba(27,27,27,1) 100%);  height:10%;
+    width:100%;
+    height:35px;
+    padding-top:1%;
+    padding-bottom:0.5%;
+    margin:0%;
+}
+.sideNavigation{
+    background-color: black;
+    flex: 1;
+}
+.content {
+  background-color: white;
+   flex: 5;
+}
+.footer{
+    background-color:#4d4c4c;
+    height:20px;
+    width:100%;
+}
+.wrapper{
+ display: flex;
+  flex-direction: row;
+  height: 90vh;
+}
+.navList{
+    color:white;
+     list-style-type: none;
+     margin:0%;
+     padding:0;
+}
+ul li {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    margin: 5px;
+    margin-left:2px;
+    margin-top:15px;
+}
+.NavLinks {
+   color:white;
+   text-decoration: none;
+}
+a.NavLinks:hover{
+    text-decoration:underline;
+}
+.SignOutBtn{
+
+  margin-left:92%;
+  margin-top:0%;
+}
