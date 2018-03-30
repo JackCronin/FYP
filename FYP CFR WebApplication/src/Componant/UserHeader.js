@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logout } from "../Action/UserActions";
 import '../Style.css';
 class UserHeader extends Component {
   constructor(props) {
@@ -8,27 +10,17 @@ class UserHeader extends Component {
     };
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
   render() {
     return (
       <div className="User-Header">
         <h1 className="headTitle">CFR CMS</h1>
-        <form className="SearchBar" onSubmit={this.handleSubmit}>
-          <input
-            name="search"
-            type="text"
-            value={this.state.search}
-            onChange={this.handleChange}
-            placeholder="Search"
-          />
-          <input type="submit" value="Search" />
-        </form>
-        
-      </div>
+        <button className="SignOutBtn" onClick={() => {this.props.logout();}}>Sign out</button>
+        </div>
     );
   }
 }
-
-export default UserHeader;
+function mapStateToProps(state) {
+  const checkedUser = state.user || {};
+  return { uid: checkedUser.uid, userData: state.databaseUser,userLoading: state.loading.user };
+}
+export default connect(mapStateToProps, { logout })(UserHeader);

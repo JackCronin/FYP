@@ -3,57 +3,84 @@ import "../Style.css";
 import { connect } from 'react-redux';
 import SideNavigation from "../Componant/SideNavigation"
 import UserHeader from "../Componant/UserHeader"
-import {reduxForm, Field } from 'redux-form';
-import { getUser, logout } from '../Action/UserActions';
-import { getFiles } from '../Action/FileActions';
+import PDFViewer from "../Componant/PDFViewer"
+import {reduxForm } from 'redux-form';
 import _ from 'lodash';
-import firebase from "firebase";
+
 class MyDocuments extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+  showPreview : false,
+    SelectedFile : "",
+    ducks :""
+  };
 
-  componentWillMount(){
-
-
-    this.props.getUser();
-    if (this.props.user.loading === false && firebase.auth().currentUser === null) {
-        this.props.history.replace('/Login');
-      }else if(this.props.user.loading === false && firebase.auth().currentUser !== null){
-      console.log(this.props.user.loading);
-      console.log(firebase.auth().currentUser);
-      }
+}
+componentDidUpdate() {
+  const { userLoading, user } = this.props;
+  if (userLoading === false && !user) {
+    this.props.history.push('/Login');
   }
-  componentWillReceiveProps(nextProps){
-    if (this.props.user.loading === false && firebase.auth().currentUser === null) {
-        this.props.history.replace('/Login');
-      }else if(this.props.user.loading === false && firebase.auth().currentUser !== null){
-      console.log(this.props.user.loading);
-      console.log(firebase.auth().currentUser);
-      }
-  }
+}
+
+
+handleButtonClickDownloader(downloadURL){
+if(downloadURL !== null || downloadURL !== undefined){
+window.open(downloadURL);
+}
+}
+handleButtonClickPreview = (downloadURL) => {
+  this.setState({SelectedFile : downloadURL});
+    this.setState({showPreview : true});
+    console.log("dasdd");
+}
+renderFiles() {
+      const { fileData,uid } = this.props;
+      return _.map(_.filter(fileData, (files, key) => {
+        console.log(fileData);
+        return  fileData[key].Owner === uid;
+      }), (files, key) => {
+        return (
+          <div>
+            <form>
+              <label >{files.FileName}</label>
+              <button type="button" onClick={()=>this.handleButtonClickPreview(files.downloadURL)} >Preview PDF</button>
+              <button type="button" onClick={()=>this.handleButtonClickDownloader(files.downloadURL)} >Download PDF</button>
+            </form>
+          </div>
+        );
+      });
+    }
 
 
 render() {
-    return (
+return (
       <div>
         <UserHeader />
-        <button className ="SignOutBtn" onClick={() => {this.props.logout();}}>Sign out</button>
         <div className="wrapper">
           <SideNavigation />
           <div className="content">
             <h2>My Documents</h2>
+            <div>
+              {this.renderFiles()}
             </div>
+            <div className="pdf-container">
+              {this.state.showPreview && <PDFViewer SelectedFile={this.state.SelectedFile}   />}
+            </div>
+          </div>
         </div>
         <div className="footer">Footer</div>
       </div>
     );
   }
 }
-
+function mapStateToProps(state) {
+  const checkedUser = state.user || {};
+  return { uid: checkedUser.uid ,user : state.user,  userData: state.databaseUser,userLoading: state.loading.user ,fileData: state.files};
+}
 let form = reduxForm({
- form: 'DocDisplay'
+ form: 'NewMyDoc'
 })(MyDocuments);
-form = connect((state, ownProps) => ({
-  user: state.user,
-  files :state.files
-}),{getUser,logout,getFiles}
-)(form);
-export default form;
+
+export default connect(mapStateToProps)(MyDocuments)

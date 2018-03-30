@@ -3,6 +3,7 @@ import '../Style.css';
 import BackG from '../Images/CFRIrelandC.png';
 import { login, getUser } from '../Action/UserActions';
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 class Login extends Component {
   constructor(props) {
       super(props);
@@ -11,20 +12,22 @@ class Login extends Component {
         password: '',
       };
     }
-   componentWillMount() {
-    this.props.getUser();
-    }
+    componentWillMount() {
+   if (this.props.user !== null) {
+     this.props.history.push('/');
+   }
+ }
 
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.user.email !== undefined) {
-        this.props.history.push('/');
-      }
-    }
- submitLogin = (event) =>  {
-        event.preventDefault();
-        this.props.login(this.state.email, this.state.password).catch(err => {console.log(err);});
+ componentWillReceiveProps(nextProps) {
+   if (nextProps.user !== null) {
+     nextProps.history.push('/');
+   }
+ }
+    submitLogin = (event) =>  {
+           event.preventDefault();
+           this.props.login(this.state.email, this.state.password).catch(err => {console.log(err);});
+}
 
-    }
   render() {
 return (
 <div>
@@ -34,9 +37,9 @@ return (
       <label className="Logintitle">Log In</label>
       <input name="email" className="textInputEmail" type="text"  onChange={(event) => this.setState({ email: event.target.value })} placeholder="Email"/>
       <input name="password" className="textInputPassword" type="password"  onChange={(event) => this.setState({ password: event.target.value })} placeholder="Password"/>
-      <input className="LoginButton" type="submit" value="Log In" />
-      <button className ="RegisterBtn" onClick={() => {this.props.history.push("/Register");}}>Register Button</button>
-    </form>
+      <div className="button-container"><div className="button-in-line"><button className="LoginButton" type="submit">Log In</button></div>
+        <div className="button-in-line"><button className ="RegisterBtn" onClick={() => {this.props.history.push("/Register");}}>Register Button</button></div></div>
+        </form>
   </div>
 </div>
 
@@ -47,4 +50,10 @@ return (
 function mapStateToProps(state, ownProps) {
   return { user: state.user };
 }
-export default connect(mapStateToProps, { login, getUser })(Login);
+let form = reduxForm({
+  form: 'LoginForm'
+})(Login);
+
+form = connect(mapStateToProps, { login, getUser })(form);
+
+export default form;

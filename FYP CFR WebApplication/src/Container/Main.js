@@ -3,29 +3,43 @@ import "../Style.css";
 import { connect } from 'react-redux';
 import SideNavigation from "../Componant/SideNavigation"
 import UserHeader from "../Componant/UserHeader"
-import {reduxForm } from 'redux-form';
-import { getUser, logout } from '../Action/UserActions';
+import _ from 'lodash';
+import { logout } from '../Action/UserActions';
 class Main extends Component {
-  componentWillMount(){
-    this.props.getUser();
-    if (this.props.user.loading === false && this.props.user.email === undefined) {
-        this.props.history.replace('/Login');
-      }
-  }
-  componentWillReceiveProps(nextProps){
-   if(nextProps.user.loading === false  && nextProps.user.email === undefined){
-    this.props.history.replace('/Login');
+  componentDidUpdate() {
+    const { userLoading, user } = this.props;
+    if (userLoading === false && !user) {
+      this.props.history.push('/Login');
     }
   }
+
+renderUsers() {
+      const { userData, uid } = this.props;
+      console.log(userData);
+      return _.map(_.filter(userData, (user, key) => {
+        return key === uid;
+      }), (user, key) => {
+        return (
+          <div>
+            <div >
+              {user.name}
+            </div>
+          </div>
+        );
+      });
+    }
 render() {
-    return (
+  return (
       <div>
         <UserHeader />
-        <button className ="SignOutBtn" onClick={() => {this.props.logout();}}>Sign out</button>
         <div className="wrapper">
           <SideNavigation />
           <div className="content">
-            <h2>Main</h2>
+            <div>
+              <div>
+                <h1>Welcome</h1></div>
+              {this.renderUsers()}
+            </div>
           </div>
         </div>
         <div className="footer">Footer </div>
@@ -33,11 +47,9 @@ render() {
     );
   }
 }
-let form = reduxForm({
- form: 'NewPost'
-})(Main);
-form = connect((state, ownProps) => ({
-  user: state.user
-}),{getUser,logout}
-)(form);
-export default form;
+function mapStateToProps(state) {
+  const checkedUser = state.user || {};
+  return { uid: checkedUser.uid, userData: state.databaseUser,userLoading: state.loading.user };
+}
+
+export default connect(mapStateToProps, { logout })(Main);

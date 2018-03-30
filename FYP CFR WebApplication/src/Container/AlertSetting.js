@@ -6,15 +6,10 @@ import UserHeader from "../Componant/UserHeader"
 import {reduxForm } from 'redux-form';
 import { getUser, logout } from '../Action/UserActions';
 class AlertSetting extends Component {
-  componentWillMount(){
-    this.props.getUser();
-    if (this.props.user.loading === false && this.props.user.email === undefined) {
-        this.props.history.replace('/Login');
-      }
-  }
-  componentWillReceiveProps(nextProps){
-   if(nextProps.user.loading === false  && nextProps.user.email === undefined){
-    this.props.history.replace('/Login');
+  componentDidUpdate() {
+    const { userLoading, user } = this.props;
+    if (userLoading === false && !user) {
+      this.props.history.push('/Login');
     }
   }
 render() {
