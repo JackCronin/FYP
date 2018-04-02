@@ -21,11 +21,26 @@ export function getGroups() {
 }
 export function RegisterGroup(groupemail,group_location,group_name) {
 const GroupRef = database.ref('Groups');
+const GroupRemoveRef =  database.ref('Groups/-L8o5GFUNOQyVEFOQ6ZV/Members');
+  var UserID = auth.currentUser.uid;
   const NewGroup = {
     GroupName: group_name,
     GroupLocation: group_location,
     GroupEmail: groupemail,
+    GroupLeader:UserID,
+    Members:{
+[UserID]:true
+    }
   }
+ 
   return dispatch => {
-  GroupRef.push(NewGroup);
+    GroupRemoveRef.child(UserID).remove();
+
+  var newgroupkey = GroupRef.push(NewGroup).getKey();
+  const UserRef = database.ref('Users').child(UserID);
+  const NewUser = {
+    isGroupLeader:true,
+    Group:newgroupkey
+  }
+  UserRef.update(NewUser);
 }}

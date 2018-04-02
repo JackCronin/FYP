@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../Style.css';
 import BackG from '../Images/CFRIrelandC.png';
-import { login, getUser } from '../Action/UserActions';
+import { login } from '../Action/UserActions';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 class Login extends Component {
@@ -25,7 +25,7 @@ class Login extends Component {
  }
     submitLogin = (event) =>  {
            event.preventDefault();
-           this.props.login(this.state.email, this.state.password).catch(err => {console.log(err);});
+           this.props.login(this.state.email, this.state.password).catch(err => {window.alert(err);});
 }
 
   render() {
@@ -54,6 +54,6 @@ let form = reduxForm({
   form: 'LoginForm'
 })(Login);
 
-form = connect(mapStateToProps, { login, getUser })(form);
+form = connect(mapStateToProps, { login })(form);
 
 export default form;

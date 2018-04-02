@@ -18,7 +18,7 @@ class AddDocuments extends Component {
   }
   componentDidUpdate() {
     const { userLoading, user } = this.props;
-    if (userLoading === false && !user) {
+      if (userLoading === false && !user) {
       this.props.history.push('/Login');
     }
   }
@@ -53,7 +53,7 @@ displayExpiryDate = () => {
         <div className="wrapper">
           <SideNavigation />
           <div className="content">
-            <h2>Add Documents</h2>
+            <h2 className="h1title">Add Documents</h2>
             <div>
               <form className="AddDocForm" onSubmit={event => {this.submitFile(event);}}>
                 <label>Please Select Type of Upload : </label>

@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import "../Style.css";
 import { connect } from 'react-redux';
+import DeleteDoc from '../Images/DeleteDoc.png';
+import PreviewDoc from '../Images/PreviewDoc.png';
+import DownloadDoc from '../Images/DownloadDoc.png';
 import SideNavigation from "../Componant/SideNavigation"
 import UserHeader from "../Componant/UserHeader"
 import PDFViewer from "../Componant/PDFViewer"
+import { fileDelete } from "../Action/FileActions";
 import {reduxForm } from 'redux-form';
 import _ from 'lodash';
 
@@ -19,7 +23,7 @@ class MyDocuments extends Component {
 }
 componentDidUpdate() {
   const { userLoading, user } = this.props;
-  if (userLoading === false && !user) {
+  if (userLoading === false && !user ) {
     this.props.history.push('/Login');
   }
 }
@@ -30,6 +34,13 @@ if(downloadURL !== null || downloadURL !== undefined){
 window.open(downloadURL);
 }
 }
+handleButtonClickDeleter(downloadURL){
+if(downloadURL !== null || downloadURL !== undefined){
+  console.log("Got here");
+fileDelete(downloadURL);
+
+}
+}
 handleButtonClickPreview = (downloadURL) => {
   this.setState({SelectedFile : downloadURL});
     this.setState({showPreview : true});
@@ -38,35 +49,41 @@ handleButtonClickPreview = (downloadURL) => {
 renderFiles() {
       const { fileData,uid } = this.props;
       return _.map(_.filter(fileData, (files, key) => {
-        console.log(fileData);
         return  fileData[key].Owner === uid;
       }), (files, key) => {
         return (
           <div>
             <form>
-              <label >{files.FileName}</label>
-              <button type="button" onClick={()=>this.handleButtonClickPreview(files.downloadURL)} >Preview PDF</button>
-              <button type="button" onClick={()=>this.handleButtonClickDownloader(files.downloadURL)} >Download PDF</button>
-            </form>
-          </div>
-        );
-      });
-    }
+              <button className="doc-icon" type="button"><img  title="Preview Document" height="16px" width="16px" alt ="Preview Document" src={PreviewDoc} onClick={()=>this.handleButtonClickPreview(files.downloadURL)} /></button>
+              <button className="doc-icon" type="button"><img title="Download Document" height="16px" width="16px" alt ="Download Document" src={DownloadDoc} onClick={()=>this.handleButtonClickDownloader(files.downloadURL)} /></button>
+              <button className="doc-icon" type="button"><img title="Delete Document" height="16px" width="16px" alt ="Delete Document" src={DeleteDoc} onClick={()=>this.handleButtonClickDeleter(files.downloadURL)} /></button>
+              <label>{files.FileName}</label>
+              </form>
+            </div>
+            );
+            });
+            }
 
 
-render() {
-return (
-      <div>
+            render() {
+              return (
+                <div>
         <UserHeader />
         <div className="wrapper">
           <SideNavigation />
           <div className="content">
-            <h2>My Documents</h2>
-            <div>
-              {this.renderFiles()}
-            </div>
-            <div className="pdf-container">
-              {this.state.showPreview && <PDFViewer SelectedFile={this.state.SelectedFile}   />}
+            <h2 className="h1title">My Documents</h2>
+            <div className="Display-Doc-Container">
+              <div className="Display-Doc-Details">
+                <div className="column">
+                  {this.renderFiles()}
+                </div>
+                <div className="column">
+                  <div className="pdf-container">
+                    {this.state.showPreview && <PDFViewer SelectedFile={this.state.SelectedFile}   />}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -83,4 +100,4 @@ let form = reduxForm({
  form: 'NewMyDoc'
 })(MyDocuments);
 
-export default connect(mapStateToProps)(MyDocuments)
+export default connect(mapStateToProps,{fileDelete})(MyDocuments)

@@ -3,14 +3,7 @@ import { connect } from 'react-redux';
 import { logout } from "../Action/UserActions";
 import '../Style.css';
 class UserHeader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: ""
-    };
-  }
-
-  render() {
+render() {
     return (
       <div className="User-Header">
         <h1 className="headTitle">CFR CMS</h1>

@@ -5,6 +5,7 @@ import LoadingReducer from './LoadingReducer'
 import FileReducer from './FileReducer'
 import DatabaseUserReducer from './DatabaseUserReducer'
 import GroupReducer from './GroupReducer'
+import ScheduleReducer from './ScheduleReducer'
 
 const rootReducer = combineReducers({
   form : formReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   loading : LoadingReducer,
   files : FileReducer,
   databaseUser : DatabaseUserReducer,
-  group : GroupReducer
+  group : GroupReducer,
+  schedule : ScheduleReducer
 });
 
 export default rootReducer;

@@ -21,7 +21,7 @@ class PDFViewer extends Component {
        var url =fileURL;
         return (
 
-          <div>
+          <div className="pdf-outline">
             {console.log("show")}
             <Document
               file={url}
