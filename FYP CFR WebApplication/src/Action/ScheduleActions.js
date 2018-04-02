@@ -19,7 +19,51 @@ export function getSchedule() {
     });
   };
 }
+export function UploadScheduleFromPrev(dates,nodeToCopy) {
+  var Monday= {}
+  var Tuesday= {}
+  var Wednesday= {}
+  var Thursday= {}
+  var Friday= {}
+  var Saturday= {}
+  var Sunday= {}
+  var date= dates;
+  var type;
+  var group;
+  const newSchedRef = database.ref('Schedules');
+  const ScheduleRef = database.ref('Schedules').child(nodeToCopy).once('value')
+  .then(snap => {
+          Monday = (snap.val().Monday);
+          Tuesday =(snap.val().Tuesday);
+          Wednesday= (snap.val().Wednesday);
+          Thursday =(snap.val().Thursday);
+          Friday =(snap.val().Friday);
+          Saturday =(snap.val().Saturday);
+          Sunday =(snap.val().Sunday);
+          type = snap.val().Type
+          group = snap.val().Group;
+          const GroupRef = database.ref('Groups').child(group);
+          const NewSched = {
+            date_of_upload:date,
+            Group:group,
+            Type:type,
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sunday
+        }
+        var shedkey =newSchedRef.push(NewSched).getKey();
+        const newGroup={
+          currentSchedule : shedkey,
+        }
 
+        GroupRef.update(newGroup);
+    })
+
+}
 export function UploadSchedule(hour_block,WeekA,WeekB,WeekC,date,Group) {
 const ScheduleRef = database.ref('Schedules');
 const GroupRef = database.ref('Groups').child(Group);
@@ -28,7 +72,7 @@ var shedkey;
 if(hour_block === "24"){
   console.log("Here m9");
    const NewSchedule ={
-    date:date,
+    date_of_upload:date,
     Group:Group,
     Type:hour_block,
     Monday:{
@@ -65,7 +109,7 @@ shedkey = ScheduleRef.push(NewSchedule).getKey();
 if(hour_block === "12"){
   console.log("Here m9");
    const NewSchedule ={
-    Date:date,
+    date_of_upload:date,
     Group:Group,
     Type:hour_block,
     Monday:{
@@ -106,7 +150,7 @@ shedkey = ScheduleRef.push(NewSchedule).getKey();
 if(hour_block === "8"){
   console.log("Here m9");
    const NewSchedule ={
-    Date:date,
+    date_of_upload:date,
     Group:Group,
     Type:hour_block,
     Monday:{

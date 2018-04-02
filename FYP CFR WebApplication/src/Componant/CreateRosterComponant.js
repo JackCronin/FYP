@@ -255,15 +255,15 @@ class CreateRosterComponant extends Component {
               event =>
               this.setState({
                 WeekB: { ...this.state.WeekB, Sunday2: event.target.value }
-                }),
+              }),
               event =>
-                this.setState({
-                  WeekC: { ...this.state.WeekC, Sunday3: event.target.value }
-                })
+              this.setState({
+                WeekC: { ...this.state.WeekC, Sunday3: event.target.value }
+              })
             )}
           </p>
         </form>
-        <button type="button" onClick={() => this.checkifComplete()}>
+        <button type="button" onClick={() => {this.checkifComplete()}}>
           Submit Schedule
         </button>
       </div>
