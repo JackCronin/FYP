@@ -22,7 +22,7 @@ class AddDocuments extends Component {
       this.props.history.push('/Login');
     }
   }
-
+//submit file details and call function
   submitFile = event =>{
     event.preventDefault();
     var typeofupload = this.state.TypeOfUpload;
@@ -36,6 +36,7 @@ else{
   window.alert("Please Choose A PDF To Upload");
 }
 }
+//if checked render expiry date 
 displayExpiryDate = () => {
     if (this.refs.myCheck.checked === true) {
     console.log("here");

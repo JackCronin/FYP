@@ -18,6 +18,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter ,Switch , Route } from "react-router-dom";
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 ReactDOM.render(
+        //make page load before log in 
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <LoadingContainer>

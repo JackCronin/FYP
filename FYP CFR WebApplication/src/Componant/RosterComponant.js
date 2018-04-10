@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import _ from 'lodash';
 class RosterComponant extends Component {
+    //render names of members in schedule 
   renderMemberName(schedule){
       const { userData } = this.props;
       let namesToRender = []
@@ -22,6 +23,7 @@ class RosterComponant extends Component {
       })
       return namesToRender
     }
+    //render the data in schedule 
   renderRosterData(){
       const { groupData,uid,scheduleData } = this.props;
       let membersToRender = []
@@ -64,7 +66,7 @@ membersToRender.push(el)
 })
       return membersToRender
 }
-
+//render to screen 
 render(){
 return (
   <div className="Display-RegisterGroup-Container">
@@ -91,6 +93,7 @@ return (
     );
   }
 }
+//map props values to current states 
 function mapStateToProps(state) {
   const checkedUser = state.user || {};
   return { uid: checkedUser.uid, userData: state.databaseUser,userLoading: state.loading.user,groupData: state.group,scheduleData : state.schedule };

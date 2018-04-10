@@ -28,12 +28,13 @@ componentDidUpdate() {
   }
 }
 
-
+//dowbnlaod pdf 
 handleButtonClickDownloader(downloadURL){
 if(downloadURL !== null || downloadURL !== undefined){
 window.open(downloadURL);
 }
 }
+//delete pdf 
 handleButtonClickDeleter(downloadURL){
 if(downloadURL !== null || downloadURL !== undefined){
   console.log("Got here");
@@ -41,6 +42,7 @@ fileDelete(downloadURL);
 
 }
 }
+//preview pdf 
 handleButtonClickPreview = (downloadURL) => {
   this.setState({SelectedFile : downloadURL});
     this.setState({showPreview : true});
@@ -68,18 +70,18 @@ renderFiles() {
             render() {
               return (
                 <div>
-        <UserHeader />
-        <div className="wrapper">
-          <SideNavigation />
-          <div className="content">
-            <h2 className="h1title">My Documents</h2>
-            <div className="Display-Doc-Container">
-              <div className="Display-Doc-Details">
-                <div className="column">
-                  {this.renderFiles()}
-                </div>
-                <div className="column">
-                  <div className="pdf-container">
+                  <UserHeader />
+                  <div className="wrappersetsize">
+                    <SideNavigation />
+                    <div className="content">
+                      <h2 className="h1title">My Documents</h2>
+                      <div className="Display-Doc-Container">
+                        <div className="Display-Doc-Details">
+                          <div className="column">
+                            {this.renderFiles()}
+                          </div>
+                          <div className="column">
+                            <div className="pdf-container">
                     {this.state.showPreview && <PDFViewer SelectedFile={this.state.SelectedFile}   />}
                   </div>
                 </div>

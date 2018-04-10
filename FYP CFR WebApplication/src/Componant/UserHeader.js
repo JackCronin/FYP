@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { logout } from "../Action/UserActions";
 import '../Style.css';
 class UserHeader extends Component {
+    //render header 
+}
 render() {
     return (
       <div className="User-Header">

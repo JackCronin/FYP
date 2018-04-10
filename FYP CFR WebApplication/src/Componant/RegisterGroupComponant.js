@@ -14,11 +14,13 @@ class RegisterGroupComponant extends Component {
 
       };
     }
+    //set state of associate states 
 submitGroupRegister = (event) =>  {
        event.preventDefault();
        this.props.RegisterGroup(this.state.groupemail,this.state.group_location,this.state.group_name)
 
 }
+//render to screen 
 render() {
 return (
   <div className="Display-RegisterGroup-Container">
@@ -43,6 +45,7 @@ return (
     );
   }
 }
+//set props to current state 
 function mapStateToProps(state) {
   const checkedUser = state.user || {};
   return { uid: checkedUser.uid, userData: state.databaseUser,userLoading: state.loading.user };

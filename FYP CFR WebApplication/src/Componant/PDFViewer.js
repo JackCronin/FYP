@@ -9,10 +9,12 @@ class PDFViewer extends Component {
     pageNumber: 1,
   };
 }
+//if there is a document set state 
   onDocumentLoadSuccess = ({ numPages }) =>
    this.setState({
      numPages,
    })
+   //render to screen the pdf 
    render() {
   const { numPages } = this.state;
        //var proxy="https://cors-anywhere.herokuapp.com/"

@@ -1,6 +1,7 @@
 import { auth ,database } from '../Firebase';
 export const GET_SCHEDULE = 'get_schedule';
 export const SCHEDULE_STATUS = 'schedule_status';
+//get shedule object from firebase database
 export function getSchedule() {
   return dispatch => {
     dispatch({
@@ -19,6 +20,7 @@ export function getSchedule() {
     });
   };
 }
+//get previous schedule and set that as current schedule 
 export function UploadScheduleFromPrev(dates,nodeToCopy) {
   var Monday= {}
   var Tuesday= {}
@@ -64,6 +66,7 @@ export function UploadScheduleFromPrev(dates,nodeToCopy) {
     })
 
 }
+//upload a new schedule to firebase database 
 export function UploadSchedule(hour_block,WeekA,WeekB,WeekC,date,Group) {
 const ScheduleRef = database.ref('Schedules');
 const GroupRef = database.ref('Groups').child(Group);

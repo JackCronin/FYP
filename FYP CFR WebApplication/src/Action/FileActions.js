@@ -1,6 +1,7 @@
  import {auth ,database,storage}  from '../Firebase';
 export const GET_FILES = 'get_files';
 export const FILE_STATUS = 'file_status';
+//reddux action to get file object from file node 
 export function getFiles() {
 return dispatch => {
       dispatch({
@@ -19,6 +20,7 @@ return dispatch => {
       });
     };
   }
+  //delete file from firebase
   export function fileDelete(downloadURL){
     console.log("Got to next");
     var desertRef = storage.refFromURL(downloadURL)
@@ -47,6 +49,7 @@ return dispatch => {
 
   }
 }
+//upload profile pic to firebase storage and set download url on database  
 export function uploadImage(myImage){
   var UserID = auth.currentUser.uid;
   var Default = "DefaultImage"
@@ -81,7 +84,7 @@ export function uploadImage(myImage){
       }
 }
 
-
+//upload a file to storage and update file url in database 
 export function uploadFile(file,TypeOfUpload,HasTimer,expirydate){
   var UserID = auth.currentUser.uid;
   const storageRef = storage.ref(UserID + '/' + file.name);

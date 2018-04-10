@@ -7,6 +7,7 @@ import RegisterGroupComponant from "../Componant/RegisterGroupComponant"
 import RosterComponant from "../Componant/RosterComponant"
 import CreateRosterComponant from "../Componant/CreateRosterComponant"
 import CreateRosterComponantPrev from "../Componant/CreateRosterComponantPrev"
+import AddRemoveUserFromGroupComponantPrev from "../Componant/AddRemoveUserFromGroupComponantPrev"
 import {reduxForm } from 'redux-form';
 import _ from 'lodash';
 class MyGroups extends Component {
@@ -15,7 +16,8 @@ class MyGroups extends Component {
       this.state = {
       regGroup:false,
       createRoster:false,
-      createRosterPrev:false
+      createRosterPrev:false,
+      managerusers:false
       };
     }
   componentDidUpdate() {
@@ -24,6 +26,7 @@ class MyGroups extends Component {
       this.props.history.push('/Login');
     }
   }
+  //render memeber names 
   renderMemberName(groups){
       const { userData } = this.props;
       let membersToRender = []
@@ -40,6 +43,7 @@ class MyGroups extends Component {
       })
       return membersToRender
     }
+    //render details from group object 
     renderGroupsDetails() {
       const { groupData, uid ,userData} = this.props;
 
@@ -87,6 +91,13 @@ class MyGroups extends Component {
                 </div>
                 );
 }
+handleButtonMemberManage(){
+    if(this.state.managerusers){
+      this.setState({managerusers : false})
+  }else
+this.setState({managerusers : true})
+}
+
 handleButtonCreateSchedule(){
   if(this.state.createRoster){
       this.setState({createRoster : false})
@@ -109,9 +120,9 @@ renderGroupLeaderOptions() {
         <button type="button" className="simplestyle" onClick={()=>this.handleButtonMemberManage()}>Add/Remove Member</button>
         <button type="button" className="simplestyle" onClick={()=>this.handleButtonCreateSchedule()}>Create New Group Schedule</button>
         <button type="button" className="simplestyle" onClick={()=>this.handleButtonCreateSchedulePrevious()}>Create Group Schedule From Previous</button>
-        <button type="button" className="simplestyle" onClick={()=>this.handleButtonEditGroupDetails()}>Edit Group Details</button>
+        <button type="button" className="simplestyle" >Edit Group Details</button>
         {this.state.regGroup && this.renderCreateGroup()}
-          </div>
+      </div>
           );
 }
 render() {
@@ -127,6 +138,7 @@ render() {
             <RosterComponant />
             {this.state.createRoster && <CreateRosterComponant />}
             {this.state.createRosterPrev && <CreateRosterComponantPrev />}
+            {this.state.managerusers && <AddRemoveUserFromGroupComponantPrev />}
           </div>
         </div>
         <div className="footer">Footer </div>

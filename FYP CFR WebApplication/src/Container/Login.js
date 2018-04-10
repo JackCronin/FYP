@@ -17,7 +17,7 @@ class Login extends Component {
      this.props.history.push('/');
    }
  }
-
+//if user loggged in send to main page 
  componentWillReceiveProps(nextProps) {
    if (nextProps.user !== null) {
      nextProps.history.push('/');

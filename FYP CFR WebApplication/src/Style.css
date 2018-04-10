@@ -215,7 +215,7 @@ h2{
 }
 .homepage-image{
   width:97%;
-  height:50%;
+  height:40%;
   margin-left:1.5em;
 }
 .SearchBar{
@@ -406,7 +406,7 @@ font-family: Arial, Helvetica, sans-serif;
 .sideNavigation{
     background-color: black;
     flex: 1;
-    position: sticky;
+position: sticky;
 }
 .content {
   background-color: white;
@@ -416,13 +416,20 @@ font-family: Arial, Helvetica, sans-serif;
     background-color:#4d4c4c;
     height:20px;
     width:100%;
-    position: sticky;
+
     margin:0;
 }
 .wrapper{
  display: flex;
   flex-direction: row;
+  min-height: 90vh;
+  height: auto;
+}
+.wrappersetsize{
+ display: flex;
+  flex-direction: row;
   height: 90vh;
+
 }
 .navList{
     color:white;

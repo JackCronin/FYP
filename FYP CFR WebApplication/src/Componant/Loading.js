@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Style.css';
-
+//call and dislay loading screen 
 const Loading = () => {
   return (
     <div className="align-center">

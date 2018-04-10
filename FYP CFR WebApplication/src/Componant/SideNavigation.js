@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Style.css';
 import { NavLink } from 'react-router-dom';
 class SideNavigation extends Component {
+    //display side nav bar 
   render() {
     return (
       <div className="sideNavigation">

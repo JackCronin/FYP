@@ -22,7 +22,7 @@ class CreateRosterComponant extends Component {
       complete: false
     };
   }
-
+//display values from schedule object 
   renderRosterData(event1, event2, event3) {
     const { userData, groupData, uid } = this.props;
     let membersToRender = [];
@@ -83,13 +83,13 @@ class CreateRosterComponant extends Component {
     }
 
     return toRender;
-  }
+  }//when changed set state to new value 
   handleOptionChange = event => {
     this.setState({
       hour_block: event.target.value
     });
   };
-
+//check  if all data is present 
   handleChecker = data => {
     var bool = true;
     _.map(data, (items, key) => {
@@ -99,7 +99,7 @@ class CreateRosterComponant extends Component {
     });
     return bool;
   };
-
+//check to see if call is valuid , if so call fucntion 
   checkifComplete = () => {
     if (this.state.hour_block === "8") {
       var checked = this.handleChecker(this.state.WeekA);
@@ -129,6 +129,7 @@ class CreateRosterComponant extends Component {
       });
     }
   };
+  //render to screen 
   render() {
     return (
       <div className="Display-Details-Container-Sched">
@@ -270,6 +271,7 @@ class CreateRosterComponant extends Component {
     );
   }
 }
+//set props vlaues to current states 
 function mapStateToProps(state) {
   const checkedUser = state.user || {};
   return {

@@ -3,6 +3,7 @@ export const GET_USER = 'get_user';
 export const GET_DATABASE_USERS = 'get_database_users';
 export const USER_STATUS = 'user_status';
 export const USER_DATABASE_STATUS = 'user_database_status';
+//get user object from firebase authentication 
 export function getUser() {
   return dispatch => {
     dispatch({
@@ -21,6 +22,7 @@ export function getUser() {
     });
   };
 }
+//get user object from firebase database
 export function getDatabaseUsers() {
   return dispatch => {
     dispatch({
@@ -39,14 +41,15 @@ export function getDatabaseUsers() {
     });
   };
 }
-
+//login with firebase auth
 export function login(email, password) {
   return dispatch => auth.signInWithEmailAndPassword(email, password);
 }
-
+//logout with fireabse auth
 export function logout() {
   return dispatch => auth.signOut();
 }
+//update current user details 
 export function updateUser(name, about,date_of_birth,email,phone_number) {
   var UserID = auth.currentUser.uid;
   const UserRef = database.ref('Users').child(UserID);
@@ -64,7 +67,7 @@ export function updateUser(name, about,date_of_birth,email,phone_number) {
     auth.currentUser.updateEmail(email)
   }
 }
-
+//register a new user on auth and database 
 export function RegisterUser(email,password,date_of_birth,name,group_name_mem,phone_number) {
 return dispatch => auth.createUserWithEmailAndPassword(email, password).then((user) => {
   var UserID = user.uid;

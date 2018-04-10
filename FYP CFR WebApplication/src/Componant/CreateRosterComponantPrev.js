@@ -12,6 +12,7 @@ class CreateRosterComponantPrev extends Component {
       date:''
     };
   }
+  //create options for select input field and render 
   renderSelectOptions = () => {
     const { groupData, uid, scheduleData } = this.props;
     let membersToRender = [];
@@ -67,7 +68,7 @@ class CreateRosterComponantPrev extends Component {
 
     return toRender;
   };
-
+//if data is their call fucntion 
   SubmitSchedule = () =>{
 if(this.state.nodeToCopy && this.state.date){
     UploadScheduleFromPrev(this.state.date,this.state.nodeToCopy);
@@ -75,7 +76,7 @@ if(this.state.nodeToCopy && this.state.date){
   window.alert("Please Fill in All Data");
 }
   }
-
+//render to screen 
   render() {
     return (
       <div className="simplestyle">
@@ -87,6 +88,7 @@ if(this.state.nodeToCopy && this.state.date){
     );
   }
 }
+//set props data to current states 
 function mapStateToProps(state) {
   const checkedUser = state.user || {};
   return {

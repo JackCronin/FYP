@@ -31,7 +31,7 @@ class LoadingContainer extends Component {
 
     }
   }
-
+//used to load data into objects 
   render() {
     const { userLoading, databaseUserLoading,scheduleLoading, fileLoading,groupsLoading,children } = this.props;
     if (userLoading === false && databaseUserLoading === false) {

@@ -30,7 +30,7 @@ class Register extends Component {
    }
  }
 
-
+//submit memeber with details and call fucntion 
  submitMemberRegister = (event) =>  {
         event.preventDefault();
         if(this.state.email && this.state.password && this.state.date_of_birth && this.state.name && this.state.group_name_mem && this.state.phone_number){

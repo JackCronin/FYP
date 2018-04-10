@@ -27,6 +27,7 @@ class MyProfile extends Component {
       this.props.history.push('/Login');
     }
   }
+  //upload new image 
   handleButtonClickChangeImage = () => {
     var myImage = document.getElementById("ProfilePicFile").files[0];
     var fileType = myImage["type"];
@@ -38,12 +39,14 @@ class MyProfile extends Component {
       console.log("Change Image");
 
   }
+  //upload new details 
   handleButtonSubmitDetails=() =>{
     this.props.updateUser(this.state.name, this.state.about,this.state.date_of_birth,this.state.email,this.state.phone_number);
     this.setState({ showEditDetails: false });
 
 
   }
+  //if checked display edit details 
   changeCheckbox = () => {
       if (this.refs.myCheckED.checked === true) {
       console.log(this.state.showEditDetails);
@@ -89,6 +92,7 @@ class MyProfile extends Component {
             );
             });
             }
+            //render to change details 
   renderEditDetails() {
         const { userData, uid } = this.props;
         console.log(userData);
@@ -116,7 +120,7 @@ class MyProfile extends Component {
                   </p>
                   <p className ="row-display">
                     <label className="cell-display">Phone Number : </label>
-                    <input name="phone_number" type="text" className="cell-display" onChange={(event) => this.setState({ phone_number: event.target.value })} placeholder={user.email} ></input>
+                    <input name="phone_number" type="text" className="cell-display" onChange={(event) => this.setState({ phone_number: event.target.value })} placeholder={user.phone_number} ></input>
                   </p>
                 </form>
               </div>
